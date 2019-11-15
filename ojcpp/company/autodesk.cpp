@@ -119,8 +119,4 @@ DEFINE_CODE_TEST(autodesk_maxsumarr)
         vector<int> arr = {-2,-3,-4,0,-1,-6,-7,-8,-3,-7,-9};
         cout << PRINT_VEC(obj.findMaxSumSubarr(arr)) << endl;
     }
-
-    Solution
-
-
 }
