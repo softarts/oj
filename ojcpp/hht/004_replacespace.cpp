@@ -12,7 +12,7 @@ namespace {
     public:
         string replace(string s) {
             // replace in place
-            
+
         }
     };
 }
