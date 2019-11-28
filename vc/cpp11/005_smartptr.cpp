@@ -67,6 +67,7 @@ namespace {
                 delete ptr;
         }
     };
+
 #include <memory>
     void unique_ptr_test()
     {
