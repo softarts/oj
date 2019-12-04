@@ -36,6 +36,8 @@ Specifically, we want to do the transformation in place. After the transformatio
 The figure below shows the transformed BST. The solid line indicates the successor relationship, while the dashed
  line means the predecessor relationship.
 
+ https://www.cnblogs.com/grandyang/p/9615871.html
+
 这道题给了一个二叉搜索树，让我们将其转化为双向链表。并且题目中给了一个带图的例子，帮助理解。题目本身并不难理解，仔细观察下给的示例图。
  首先，转化成双向链表的每个结点都有 left 和 right 指针指向左右两个结点，不管其原来是否是叶结点还是根结点，转换后统统没有区别。其次，
  这是个循环双向链表，即首尾结点是相连的，原先的二叉搜索树中的最左结点和最右结点，现在也互相连接起来了。最后，返回的结点不再是原二叉
@@ -94,38 +96,31 @@ namespace {
     public:
         TreeNode* _head = nullptr;
         TreeNode* tolist(TreeNode*node) {
-            if (node==nullptr)
-                return nullptr;
-
+            TreeNode *prev = nullptr;
+            inorder(node,prev);
+            return _head;
         }
 
-        void inorder(TreeNode* node,TreeNode*parent) {
+        // prev 代表前一个最大值，采用中序遍历的方法依次排序
+        void inorder(TreeNode* node,TreeNode*&prev) {
             if (node==nullptr)
                 return;
 
-//            TreeNode*leftTree = node->left;
-//            TreeNode*rightTree = node->right;
-
-            inorder(node->left,parent);
+            inorder(node->left,prev);
             if (_head==nullptr) {
                 _head = node;
+                prev = node;
             } else {
-                node->left = parent;
-                parent->right = node;
-                parent = node;
+                node->left = prev;  //node is bigger than prev
+                prev->right = node;
+                prev = node;
             }
 
-            inorder(node->right,parent);
-            parent->left = node;
-            node->right = parent;
-
-            // 左右子树返回的值不一样，一个最大，一个最小
-            // 不能用返回值
-            //
-
-
-
+            inorder(node->right,prev);
         }
+
+
+
     };
 }
 
@@ -139,14 +134,14 @@ void loop(TreeNode*node) {
     while (node) {
         cout << node->val << "-->";
         prev = node;
-        node = node->left;
+        node = node->right;
     }
-    cout << "***";
+    cout << "***" << endl;
     node = prev;
     while (node) {
         cout << node->val << "-->";
         prev = node;
-        node = node->right;
+        node = node->left;
     }
 
 }
