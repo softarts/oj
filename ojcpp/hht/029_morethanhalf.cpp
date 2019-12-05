@@ -3,6 +3,9 @@
 //
 
 //LC169
+
+//O(N)算法得到任意第K大的数字
+
 #include <codech/codech_def.h>
 using namespace std;
 
@@ -26,6 +29,8 @@ namespace {
         }
     };
 }
+
+
 
 DEFINE_CODE_TEST(hht_029_majority_element)
 {
