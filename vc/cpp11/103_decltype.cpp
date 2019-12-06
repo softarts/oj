@@ -8,6 +8,12 @@ using namespace std;
 
 namespace {
     template<typename Container,typename Index>
+    auto authAndAccess_bad(Container&c,Index i)  //C++14
+    {
+        return c[i];
+    };
+
+    template<typename Container,typename Index>
     decltype(auto) authAndAccess(Container&c,Index i)  //C++14
     {
         return c[i];
@@ -19,6 +25,14 @@ namespace {
     -> decltype(std::forward<Container>(c)[i])
     {
         return std::forward<Container>(c)[i];
+    }
+
+    void test_decltype_bad() {
+        ///mnt/d/work/oj/vc/cpp11/103_decltype.cpp:32:34: error: lvalue required as left operand of assignment
+        //authAndAccess_bad(d,3) = 10; // error: expression is not assignable,must use decltype(auto)
+        deque<int> d{1,2,3,4,5};
+        //authAndAccess_bad(d,3) = 10;
+        // error: expression is not assignable,must use decltype(auto)
     }
 
     void test_decltype() {
@@ -51,6 +65,7 @@ namespace {
 
 DEFINE_CODE_TEST(103_decltype)
 {
+    test_decltype_bad();
     //test_decltype();
-    test_auto_fail();
+    //test_auto_fail();
 }
