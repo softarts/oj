@@ -79,7 +79,7 @@ namespace {
      而其他每100个数内‘1’的个数也应该符合之前的规律，即也是20个，那么总共就有 120 + 20 * 9 = 300 个‘1’。那么还是可以用相同的方法来判断并累加1的个数，
      参见代码如下：
      */
-    class Solution {
+    class Solution1 {
     public:
         int numberof1(int n) {
             int res = 0, a = 1, b = 1;
@@ -92,6 +92,96 @@ namespace {
             return res;
         }
     };
+
+    //http://www.coin163.com/it/7440743705269299666/leetcode-
+    /*
+     * 考虑将n的十进制的每一位单独拿出讨论，每一位的值记为weight。
+
+1) 个位
+从1到n，每增加1，weight就会加1，当weight加到9时，再加1又会回到0重新开始。那么weight从0-9的这种周期会出现多少次呢？这取决于n的高位是多少，看图：
+这里写图片描述
+以534为例，在从1增长到n的过程中，534的个位从0-9变化了53次，记为round。每一轮变化中，1在个位出现一次，所以一共出现了53次。
+再来看weight的值。weight为4，大于0，说明第54轮变化是从0-4，1又出现了1次。我们记1出现的次数为count，所以：
+count = round+1 = 53 + 1 = 54
+如果此时weight为0（n=530），说明第54轮到0就停止了，那么：
+count = round = 53
+2) 十位
+对于10位来说，其0-9周期的出现次数与个位的统计方式是相同的，见图：
+这里写图片描述
+不同点在于：从1到n，每增加10，十位的weight才会增加1，所以，一轮0-9周期内，1会出现10次。即rount*10。
+再来看weight的值。当此时weight为3，大于1，说明第6轮出现了10次1，则：
+count = round*10+10 = 5*10+10 = 60
+如果此时weight的值等于0（n=504），说明第6轮到0就停止了，所以：
+count = round*10+10 = 5*10 = 50
+如果此时weight的值等于1（n=514），那么第6轮中1出现了多少次呢？很明显，这与 个位数的值有关，个位数为k，第6轮中1就出现了k+1次(0-k)。我们记个位数为former，则：
+count = round*10+former +1= 5*10+4 = 55
+3) 更高位
+更高位的计算方式其实与十位是一致的，不再阐述。
+
+4) 总结
+将n的各个位分为两类：个位与其它位。
+对个位来说：
+
+若个位大于0，1出现的次数为round*1+1
+若个位等于0，1出现的次数为round*1
+对其它位来说，记每一位的权值为base，位值为weight，该位之前的数是former，举例如图：
+这里写图片描述
+则：
+若weight为0，则1出现次数为round*base
+若weight为1，则1出现次数为round*base+former+1
+若weight大于1，则1出现次数为rount*base+base
+比如：
+
+534 = （个位1出现次数）+（十位1出现次数）+（百位1出现次数）=（53*1+1）+（5*10+10）+（0*100+100）= 214
+530 = （53*1）+（5*10+10）+（0*100+100） = 213
+504 = （50*1+1）+（5*10）+（0*100+100） = 201
+514 = （51*1+1）+（5*10+4+1）+（0*100+100） = 207
+10 = (1*1)+(0*10+0+1) = 2
+
+     public int count(int n){
+    if(n<1)
+        return 0;
+    int count = 0;
+    int base = 1;
+    int round = n;
+    while(round>0){
+        int weight = round%10;
+        round/=10;
+        count += round*base;
+        if(weight==1)
+            count+=(n%base)+1;
+        else if(weight>1)
+            count+=base;
+        base*=10;
+    }
+    return count;
+}
+
+     */
+
+    class Solution {
+    public:
+        int numberof1(int n) {
+            int ans = 0;
+            int base=1;
+            int round = n;
+            while (round>0) {
+                int w = round%10;
+                round=round/10;
+                ans += round*base;
+
+                if (w>1) {
+                    ans += base;
+                } else if (w==1) {
+                    ans += n%base+1;
+                } else {
+                }
+                base *= 10;
+
+            }
+            return ans;
+        }
+    };
 }
 
 
@@ -100,8 +190,9 @@ DEFINE_CODE_TEST(hht_032_number1)
 {
     Solution obj;
     {
-        VERIFY_CASE(obj.numberof1(1999),1600);
         VERIFY_CASE(obj.numberof1(12),5);
+        VERIFY_CASE(obj.numberof1(1999),1600);
+
 
     }
 
