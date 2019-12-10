@@ -9,3 +9,10 @@
  *
  *
  * */
+
+#include <codech/codech_def.h>
+
+using namespace std;
+namespace {
+
+}

@@ -10,8 +10,24 @@ using namespace std;
 namespace {
     class Solution {
     public:
-        string find_smallest(vector<int> &arr) {
+        string find_smallest(vector<string> &arr) {
+            sort(arr.begin(),arr.end(),[](string&a,string&b){
+               return a+b < b+a;
+            });
+            stringstream ss;
+            copy(arr.begin(),arr.end(),ostream_iterator<string>(ss));
+            return ss.str();
 
         }
     };
+}
+
+DEFINE_CODE_TEST(hht_033_smalleststr)
+{
+    Solution obj;
+    {
+        vector<string> arr = {"3","32","321"};
+        VERIFY_CASE(obj.find_smallest(arr),"321323");
+    }
+
 }
