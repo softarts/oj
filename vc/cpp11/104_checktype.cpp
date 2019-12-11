@@ -11,8 +11,8 @@ namespace {
         const int theAnswer = 42;
         auto x = theAnswer;
         auto y = &theAnswer;
-        TD<decltype(x)> xType; // 推导规则 case3 - 去掉const, 剩下x=int
-        TD<decltype(y)> yType; // 推导规则 case1 - 全部保留，y=const int*
+        //TD<decltype(x)> xType; // 推导规则 case3 - 去掉const, 剩下x=int
+        //TD<decltype(y)> yType; // 推导规则 case1 - 全部保留，y=const int*
     }
 }
 
