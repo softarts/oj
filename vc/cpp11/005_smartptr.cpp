@@ -3,6 +3,8 @@
 //
 
 #include <codech/codech_def.h>
+#include <memory>
+
 using namespace std;
 
 // deprecated, not test
@@ -68,7 +70,7 @@ namespace {
         }
     };
 
-#include <memory>
+
     void unique_ptr_test()
     {
         {
