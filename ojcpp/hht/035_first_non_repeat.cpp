@@ -6,6 +6,7 @@
 using namespace std;
 
 // AMAZON 考题,f*
+// GS 1st
 // 使用hashmap，遍历两次
 
 namespace {
