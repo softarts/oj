@@ -86,7 +86,7 @@ namespace {
         }
 
         double findMedian() {
-            
+
         }
     };
 }
