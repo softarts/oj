@@ -2,6 +2,8 @@
 // Created by rui zhou on 2019-12-20.
 //
 
+// 实例化方面的问题，例如，需要看到依赖的函数的声明才能实例化
+
 #include <codech/codech_def.h>
 using namespace std;
 
