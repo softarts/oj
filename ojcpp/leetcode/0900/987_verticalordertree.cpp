@@ -92,8 +92,8 @@ namespace {
 
             while (!todo.empty()) {
                 vector<pair<TreeNode *,pair<int,int>>> layerNodes;
-
                 treemap_t tmptree;
+
                 while (!todo.empty()) {
                     auto &elem = todo.front();
                     auto &pos = elem.second;
@@ -125,7 +125,6 @@ namespace {
                     for (auto &it:lst) {
                         target.emplace_back(it);
                     }
-                    //tree[x].insert(tree[x].end(),lst.begin(),lst.end());
                 }
             }
             vector<vector<int>> ans;
@@ -143,5 +142,8 @@ namespace {
 DEFINE_CODE_TEST(987_verticalordertree)
 {
     Solution obj;
+    TreeNode *root = CREATE_TREENODE({0,1,10,2,null,null,18,23,3,22,null,null,34,4,5,29,32,null,null,7,8,6,11,31,null,null,null,9,12,null,null,null,13,14,25,null,null,26,15,19,17,null,21,null,16,null,null,30,null,null,null,null,null,null,33,null,null,24,20,null,null,null,null,null,null,27,28});
+
+    VERIFY_CASE(PRINT_VVEC(obj.verticalTraversal(root)),"");
 
 }
