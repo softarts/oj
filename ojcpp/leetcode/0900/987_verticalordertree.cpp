@@ -28,43 +28,6 @@ The nodes with values 3 and 15 occur at positions (0, 0) and (0, -2);
 The node with value 20 occurs at position (1, -1);
 The node with value 7 occurs at position (2, -2).
 
- vector<vector<int>> verticalTraversal(TreeNode* root) {
-            using elem_t = pair<int,int>;
-            using treemap_t = map<int,list<elem_t>>;
-            treemap_t tree;
-            deque<pair<TreeNode*,pair<int,int>>> todo{(root,(0,0))};
-
-            while (!todo.empty()) {
-                vector<pair<TreeNode *,pair<int,int>>> layerNodes;
-
-                while (!todo.empty()) {
-                    auto &elem = todo.front();
-                    auto &pos = elem.second;
-                    auto &node = elem.first;
-                    todo.pop_front();
-                    int x = pos.first;
-                    int y = pos.second;
-                    auto &lst = tree[x];
-                    lst.emplace_back((y,node->val));
-                    if (node->left) {
-                        layerNodes.emplace_back((node->left,(x-1,y-1));
-                    }
-                    if (node->right) {
-                        layerNodes.emplace_back((node->right,(x+1,y-1));
-                    }
-                }
-                for (auto &&pr: layerNodes) {
-                    todo.emplace_back(pr);
-                }
-            }
-            vector<vector<int>> ans;
-            for (auto &&iter:tree) {
-                int x = iter.first;
-
-            }
-
-
-        }
 
  */
 
@@ -82,6 +45,7 @@ namespace {
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+ //写得有点复杂
     class Solution {
     public:
         vector<vector<int>> verticalTraversal(TreeNode* root) {
@@ -137,6 +101,7 @@ namespace {
         }
 
     };
+    //能否用递归得办法
 }
 
 DEFINE_CODE_TEST(987_verticalordertree)
