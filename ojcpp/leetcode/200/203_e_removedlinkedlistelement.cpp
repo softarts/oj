@@ -4,7 +4,7 @@
 
 #include <codech/codech_def.h>
 using namespace std;
-
+using namespace CODECH;
 namespace {
     /**
  * Definition for singly-linked list.
