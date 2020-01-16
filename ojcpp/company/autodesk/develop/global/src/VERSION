@@ -1,0 +1,14 @@
+config.version = Version(
+    major=15,
+    minor=0,
+    point=6,
+    patch=0
+)
+
+config.version = Version(
+    major=15,
+    minor=0,
+    ADLMSDK_VERSION_POINT=7,
+    patch=0
+)
+
