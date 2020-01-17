@@ -45,13 +45,18 @@ def updateVersion():
 def main():
     updateSconstruct()
     updateVersion()
-
-
 main()
 """
 
 
-# ============================
+"""
+the main idea is 
+1. remove the duplicate code, 
+2. use a class to encapsulate the common function, API and verification function
+3. updateSconstruct() & updateVersion - the API implementation 
+4. doUpdate() - common function, just supply with the different pattern and file name.
+5. verify() - pass the expect pattern to check
+"""
 import os,re
 
 class FileMeta(object):
