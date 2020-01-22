@@ -1,20 +1,25 @@
 package com.zhourui.leetcode
 import com.zhourui.codech._
 
+//if (p == null && q == null) {
+//true
+//} else if (p != null && q == null) {
+//false
+//} else if (p == null && q != null) {
+//false
+//} else if (p.value == q.value) {
+//isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
+//} else {
+//false
+//}
 package lc0100 {
 
   object Solution {
     def isSameTree(p: TreeNode, q: TreeNode): Boolean = {
-      if (p == null && q == null) {
-        true
-      } else if (p != null && q == null) {
-        false
-      } else if (p == null && q != null) {
-        false
-      } else if (p.value == q.value) {
-        isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
+      if (p!=null && q!=null) {
+        p.value == q.value && isSameTree(p.left,q.left) && isSameTree(p.right,q.right)
       } else {
-        false
+        p == q
       }
     }
   }
