@@ -13,7 +13,6 @@ import com.zhourui.codech._
 //false
 //}
 package lc0100 {
-
   object Solution {
     def isSameTree(p: TreeNode, q: TreeNode): Boolean = {
       if (p!=null && q!=null) {
@@ -26,9 +25,16 @@ package lc0100 {
 
   class Test extends BaseExtension {
     def init {
-
-      //println(Solution.isSameTree(arr, 9).deep == Array(0, 1).deep)
-
+      {
+        val t1 = Tree.build(IndexedSeq("1","2 3"))
+        val t2 = Tree.build(IndexedSeq("1","2 3"))
+        println(Solution.isSameTree(t1,t2) == true)
+      }
+      {
+        val t1 = Tree.build(IndexedSeq("1","2"))
+        val t2 = Tree.build(IndexedSeq("1","N 2"))
+        println(Solution.isSameTree(t1,t2) == false)
+      }
     }
     val name = "100 sametree"
   }

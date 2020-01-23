@@ -7,7 +7,12 @@ package com.zhourui.codech
 case class TreeNode(value : Int, left :TreeNode, right : TreeNode)
 
 object Tree {
-  def build(lines: IndexedSeq[IndexedSeq[String]]) = {
+  def build(lines:IndexedSeq[String]) :TreeNode = {
+    buildArrofArr(lines.map(_.split("\\s+").toIndexedSeq)).get
+  }
+
+
+  def buildArrofArr(lines: IndexedSeq[IndexedSeq[String]]) = {
     def recurse(lines: IndexedSeq[IndexedSeq[String]]): IndexedSeq[TreeNode] = lines match {
       // 只剩下头部了，尾部为空,將頭部轉化爲treenode
       case line +: IndexedSeq() => {
@@ -20,7 +25,15 @@ object Tree {
       // +: 用提取的头部 +:(组合) 尾部的字符串表示 一个seq，对尾部进行recurse
       //第一次先进来 line = 1, rest = 23 456
       case line +: rest => {
-        val prevTrees = recurse(rest)
+        val prevTrees = {
+          val tmp = recurse(rest)
+          if (tmp.size <2) {
+            tmp :+ null
+          } else {
+            tmp
+          }
+        }
+
         //scala.AnyRef 下面的zipped，把2个元素并在一起
         (line.filterNot(_==null), prevTrees.sliding(2).toIndexedSeq).zipped
           //Option有两个子类别，Some和None
@@ -35,4 +48,6 @@ object Tree {
     recurse(lines).headOption
   }
 }
+
+
 
