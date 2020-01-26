@@ -14,12 +14,18 @@ import com.zhourui.codech._
 //}
 package lc0100 {
   object Solution {
+//    def isSameTree(p: TreeNode, q: TreeNode): Boolean = {
+//      if (p!=null && q!=null) {
+//        p.value == q.value && isSameTree(p.left,q.left) && isSameTree(p.right,q.right)
+//      } else {
+//        p == q
+//      }
+//    }
     def isSameTree(p: TreeNode, q: TreeNode): Boolean = {
-      if (p!=null && q!=null) {
-        p.value == q.value && isSameTree(p.left,q.left) && isSameTree(p.right,q.right)
-      } else {
-        p == q
-      }
+        (p,q) match {
+          case (p,q) if (p!=null && q!=null) => p.value == q.value && isSameTree(p.left,q.left) && isSameTree(p.right,q.right)
+          case (p,q) => p==q
+        }
     }
   }
 

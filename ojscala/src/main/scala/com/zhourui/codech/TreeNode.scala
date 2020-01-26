@@ -11,6 +11,7 @@ object Tree {
     buildArrofArr(lines.map(_.split("\\s+").toIndexedSeq)).get
   }
 
+  // TODO build from string?
 
   def buildArrofArr(lines: IndexedSeq[IndexedSeq[String]]) = {
     def recurse(lines: IndexedSeq[IndexedSeq[String]]): IndexedSeq[TreeNode] = lines match {
