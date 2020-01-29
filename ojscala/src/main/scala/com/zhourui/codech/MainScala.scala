@@ -35,17 +35,36 @@ object MainScala {
 
 
 
-  def extensions: List[BaseExtension] = {
-    val reflections = new Reflections("com.zhourui.leetcode")
-    val subclasses = reflections.getSubTypesOf(classOf[BaseExtension])
-    subclasses.toList.map { x => x.getDeclaredConstructors()(0).newInstance().asInstanceOf[BaseExtension] }
+//  def extensions: List[BaseExtension] = {
+//    val reflections = new Reflections("com.zhourui.leetcode")
+//    val subclasses = reflections.getSubTypesOf(classOf[BaseExtension])
+//
+//    //subclasses.toList.map { x => x.getDeclaredConstructors()(0).newInstance().asInstanceOf[BaseExtension] }
+//    subclasses.toList.map { x =>
+//      try {
+//        println(x.getDeclaredConstructors()(0))
+//          //.newInstance().asInstanceOf[BaseExtension]
+//      } catch {
+//        case _ => println("something wrong")
+//      }
+//    }
+def extensions: List[BaseExtension] = {
+  val reflections = new Reflections("com.zhourui.leetcode")
+  val subclasses = reflections.getSubTypesOf(classOf[BaseExtension])
+
+  //subclasses.toList.map { x => x.getDeclaredConstructors()(0).newInstance().asInstanceOf[BaseExtension] }
+  subclasses.toList.map { x =>
+      try {
+        println(x.getDeclaredConstructors()(0))
+
+      } catch {
+        case _ => println("something wrong")
+      }
+    x.getDeclaredConstructors()(0).newInstance().asInstanceOf[BaseExtension]
+    }
   }
 
   def main(args: Array[String]): Unit = {
-    //println("Started")
-//    for (ext<-extensions) {
-//      println()
-//    }
     val lst = extensions.sortBy(_.toString)
     //lst.
     for (i<- 0 until lst.length) {
