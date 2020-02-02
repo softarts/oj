@@ -91,6 +91,33 @@ namespace {
 
 }
 
+{
+// Jump Game
+//   [3, 1, 2, 1, 4] -> Possible  
+// [3, 2, 1, 0, 4] -> Not Possible
+// [0,1,1,1,1] -> not possible
+// [1,0,1,1,1] -> not possible
+
+bool CanJump(vector<int> v)
+{
+     	if (v.empty()) return false;
+    if (v.size()==1) return true;
+    int start = 0;
+    int end = 0;
+    int l = v.size()-1;
+    while (start < end && start<=l) {
+        if (v[start] == 0 && end == start)
+            return false;
+
+        end = max(end,v[start]+start);
+
+        if (end>=l)
+            return true;
+        start++;
+    }
+    return (end>=l?true:false);
+     } 
+}
 
 DEFINE_CODE_TEST(autodesk_reversewords)
 {
