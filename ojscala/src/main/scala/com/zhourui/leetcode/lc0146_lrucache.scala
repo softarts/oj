@@ -108,6 +108,39 @@ package lc0146 {
     }
   }
 
+  class LRUCache3(_capacity: Int) {
+    def get(key: Int): Int = {
+      if (hm.contains(key)) {
+        val node = hm(key)
+        remove(node)
+        addToHead(node)
+        node.v.v
+      } else { // not found
+        -1
+      }
+    }
+
+    def put(key: Int, value: Int) {
+      if (hm.contains(key)) {
+        val node = hm(key)
+        remove(node)
+        addToHead(node)
+        node.v.v = value
+      } else {
+        if (hm.size == c) {
+          val old = tail
+          if (old!=null) {
+            remove(old)
+            hm.remove(old.v.k)
+          }
+        }
+        val node = Node(KV(key,value),null,null)
+        hm(key) = node
+        addToHead(node)
+      }
+    }
+  }
+
   class Test extends BaseExtension {
     def init {
       val lru = new LRUCache(2)
