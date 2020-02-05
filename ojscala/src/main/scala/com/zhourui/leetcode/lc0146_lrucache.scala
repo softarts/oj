@@ -44,30 +44,42 @@ package lc0146 {
     case class KV(k:Int,var v:Int)
     case class Node(v:KV,var prev:Node,var next:Node)
 
-    //var head = Node(KV(-1,-1),null,null)
+
     var head:Node = null
-
+    var tail:Node = null
     val hm = HashMap[Int, Node]()
-
-    //val lb = ListBuffer.empty[Int]
     val c = _capacity
 
     def addToHead(cur:Node): Unit = {
-      cur.prev = cur.next
+      if (head!=null) {
+        head.prev = cur
+      } else {
+        tail = cur
+      }
+      cur.prev = null
       cur.next = head
       head = cur
     }
 
+    // cur not null
     def remove(cur:Node): Unit = {
       if (cur.prev!=null) { // it is Not head
-        cur.prev = cur.next
+        cur.prev.next = cur.next
+      } else {
+        head = cur.next
       }
-      head = cur.next
+
+      if (cur.next!=null) { // not tail
+        cur.next.prev = cur.prev
+      } else {
+        tail = cur.prev
+      }
     }
 
     def get(key: Int): Int = {
       if (hm.contains(key)) {
         val node = hm(key)
+        remove(node)
         addToHead(node)
         node.v.v
       } else { // not found
@@ -78,19 +90,20 @@ package lc0146 {
     def put(key: Int, value: Int) {
       if (hm.contains(key)) {
         val node = hm(key)
+        remove(node)
         addToHead(node)
         node.v.v = value
       } else {
-
         if (hm.size == c) {
-          val node = hm(key)
-
-          val lk = lb.head
-          hm.remove(lk)
-          lb.remove(0)
+          val old = tail
+          if (old!=null) {
+            remove(old)
+            hm.remove(old.v.k)
+          }
         }
-        hm(key) = value
-        lb += key
+        val node = Node(KV(key,value),null,null)
+        hm(key) = node
+        addToHead(node)
       }
     }
   }
@@ -104,6 +117,33 @@ package lc0146 {
     }
 
     val name = "146 LRU chache"
+  }
+
+//  ["LRUCache","put","put","get","put","get","put","get","get","get"]
+//  [[2],[1,1],[2,2],[1],[3,3],[2],[4,4],[1],[3],[4]]
+  class Test2 extends BaseExtension {
+    def init {
+      val lru = new LRUCache2(2)
+//      lru.put(1,1)
+//      lru.put(2,2)
+//      println(lru.get(1) == 1)
+//      lru.put(3,3)
+//      println(lru.get(2) == -1)
+//      lru.put(4,4)
+//      println(lru.get(1) == -1)
+//      println(lru.get(3) == 3)
+//      println(lru.get(4) == 4)
+
+//        ["LRUCache","put","put","put","put","get","get"]
+//        [[2],[2,1],[1,1],[2,3],[4,1],[1],[2]]
+      lru.put(2,1)
+      lru.put(1,1)
+      lru.put(2,3)
+      lru.put(4,1)
+      println(lru.get(1) == -1)
+      println(lru.get(2) == 3)
+    }
+    val name = "146 LRU chache xxxx"
   }
 
   /**
