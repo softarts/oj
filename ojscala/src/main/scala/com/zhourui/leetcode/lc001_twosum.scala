@@ -4,6 +4,7 @@ import com.zhourui.codech._
 package lc001 {
   object Solution {
     def twoSum(nums: Array[Int], target: Int): Array[Int] = {
+      // 得到 element, index
       val m = nums.zipWithIndex.groupBy(_._1) //=> it is a collection,map(item:idx)
       nums.zipWithIndex.withFilter(pair => {
         val diff = target - pair._1

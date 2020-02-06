@@ -5,6 +5,8 @@ package lc003 {
   object Solution {
     //s.zipWithIndex.foreach(println) // =>tuple
     //   def foldLeft[B](z: B)(op: (B, A) => B): B = {
+    // 解释 z: 初始值,
+    // op (B,A) => B前一个结果，A本次输入,返回作为下一个输入
     def lengthOfLongestSubstring(s: String): Int = {
       s.zipWithIndex.foldLeft((0, -1, Map[Char, Int]())) {
         case ((len, start_pos, map), (char, i)) => {
