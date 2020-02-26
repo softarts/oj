@@ -59,7 +59,7 @@ def extensions: List[BaseExtension] = {
 
 
       } catch {
-        case _ => println("something wrong")
+        case _:Throwable => println("something wrong")
       }
     x.getDeclaredConstructors()(0).newInstance().asInstanceOf[BaseExtension]
     }

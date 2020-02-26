@@ -1,8 +1,15 @@
 package com.zhourui.codech
 
-class DoublyLinkedList {
-  case class Node(v:Int,var prev:Node,var next:Node)
+// generate companion object
+//case class Node(var v:Int,var prev:Node,var next:Node)
+//covariant type occurs in contravariant position
+//case class Node[+T](v:T,var prev:Node[T],var next:Node[T])
 
+// https://stackoverflow.com/questions/43180310/covariant-type-a-occurs-in-contravariant-position-in-type-a-of-value-a/43180701
+case class KV(k:Int,var v:Int)
+case class Node(var v:KV,var prev:Node,var next:Node)
+
+class DoublyLinkedList {
   var head:Node = null
   var tail:Node = null
 
@@ -12,9 +19,9 @@ class DoublyLinkedList {
     if (tail!=null) {
       tail.next = node
     } else {
-      tail = node
       head = node
     }
+    tail = node
   }
 
   def push_front(node:Node): Unit = {
@@ -24,6 +31,7 @@ class DoublyLinkedList {
       tail = node
     }
     node.next = head
+    node.prev = null
     head = node
   }
 
@@ -41,5 +49,8 @@ class DoublyLinkedList {
     } else {
       tail = prev
     }
+
+    node.prev = null  // 必须加上这个
+    node.next = null
   }
 }
