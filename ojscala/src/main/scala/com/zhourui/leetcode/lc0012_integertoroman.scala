@@ -69,6 +69,9 @@ package lc0012_integertoroman {
         RomanNumber("IV",4),
         RomanNumber("I",1)
       )
+      // 很巧妙 利用seq的head 和tail 递归调用
+      // :: 相当于拼接
+
       def loop(num:Int, romans:Seq[RomanNumber]): String = {
         romans match {
           case RomanNumber(romanStr, v) :: lst if v == num => romanStr
