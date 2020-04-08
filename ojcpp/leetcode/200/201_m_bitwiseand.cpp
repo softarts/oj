@@ -33,7 +33,7 @@ namespace {
     };
 
 
-    class Solution {
+    /*class Solution {
     public:
         int rangeBitwiseAnd(int m, int n) {
             n = min(~0 & m,n);
@@ -43,5 +43,5 @@ namespace {
             }
             return ret;
         }
-    };
+    };*/
 }

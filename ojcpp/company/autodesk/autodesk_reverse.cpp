@@ -43,7 +43,7 @@ std::string reverse_words(const std::string &str)
         return ans+tmp;
     }
 
-    int main()
+    int test()
     {
         std::string test_str = "String;   2be reversed...";
         assert(reverse_words(test_str) == "gnirtS;   eb2 desrever...");
