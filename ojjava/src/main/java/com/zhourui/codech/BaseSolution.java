@@ -4,7 +4,7 @@ import static java.lang.Math.min;
 
 public abstract class BaseSolution {
     public BaseSolution() {
-        //System.out.println(String.format("%s %s","register", "this.name"));
+        System.out.println(String.format("%s %s","register", name()));
         //this.name = n;
         CodechDB.getInstance().register(this);
     }

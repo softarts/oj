@@ -31,7 +31,7 @@ public class Lc0876_middlelist extends BaseSolution{
         }
     }
     @Override
-    public String name() {return "two sum";}
+    public String name() {return "middle list";}
 
     @Override
     public boolean test() {

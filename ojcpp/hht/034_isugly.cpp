@@ -4,7 +4,7 @@
 
 //一个数是否是丑数， only division 2，3，5
 //丑数应是另一个丑数乘以2，3，5的结果
-// 思路
+// 思路 LC264
 
 #include <codech/codech_def.h>
 
