@@ -3,7 +3,7 @@ package com.zhourui.leetcode;
 import java.util.Stack;
 
 // 思路
-public class Lc155_minstack {
+public class Lc0155_minstack {
     class MinStack {
         Stack<Integer> st = new Stack();
         int min_ = Integer.MAX_VALUE;
