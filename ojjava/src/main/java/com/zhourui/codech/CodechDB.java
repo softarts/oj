@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
@@ -106,8 +107,14 @@ public class CodechDB {
     void run(){
         scan();
         System.out.println("---- SCAN done --------------------");
+        //Arrays.sort(baseSolutionArrayList);
+        baseSolutionArrayList.sort(
+                (a,b) -> {
+                    return a.getClass().getSimpleName().compareTo(b.getClass().getSimpleName());
+                }
+        );
         for (int i=0;i<baseSolutionArrayList.size();i++) {
-            System.out.println(String.format("#%d %s", i, baseSolutionArrayList.get(i).name()));
+            System.out.println(String.format("#%d %s", i, baseSolutionArrayList.get(i).getClass().getSimpleName()));
         }
 
         // console input

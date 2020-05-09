@@ -12,7 +12,7 @@ import java.util.Stack;
 //https://leetcode.com/problems/remove-duplicate-letters/discuss/76762/Java-O(n)-solution-using-stack-with-detail-explanation
 //这个解释写得好,bca....我先保存b,c到stack,然后对于当前处理字符a,满足, stack.peek()>a,并且count(b/c)>0(即后面还有),所以pop stack
 //为什么st.pop的时候不减count[c],因为前面加入stack的时候已经减过count了
-//只pop stack 的顶，因为保证stack 里的字符已经满足上面的条件，不会出现[g,a], f, g的情况，否则g在前一步就要被去掉
+//只pop stack 的顶，因为保证stack 里的字符已经满足上面的条件，不会出现[g,a], f, g的情况(即嘉可以删除第一个g而未删)，否则g在前一步就要被去掉
 //同时需要visited保证该c没有被加入到stack里
 // 使用stringbuilder作为stack
 //for(char c : chars) {
