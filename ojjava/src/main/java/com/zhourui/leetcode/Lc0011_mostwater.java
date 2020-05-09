@@ -10,6 +10,7 @@ public class Lc0011_mostwater extends BaseSolution {
     class Solution {
         public int maxArea(int[] height) {
             int maxArea = 0;
+            return 0;
 
 
         }

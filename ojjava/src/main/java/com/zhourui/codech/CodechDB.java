@@ -37,7 +37,7 @@ public class CodechDB {
     private ArrayList<BaseSolution> baseSolutionArrayList=new ArrayList();
 
     private void scan() {
-        Reflections reflections = new Reflections("com.zhourui.leetcode");
+        Reflections reflections = new Reflections("com.zhourui");
         Set<Class<? extends BaseSolution>> allClasses = reflections.getSubTypesOf(BaseSolution.class);
 
 
@@ -73,7 +73,7 @@ public class CodechDB {
                     }
 
                     if(methodToFind == null) {
-                        // Method not found.
+                        System.out.println(String.format("%s not found",x.toString()));
                     } else {
                         // Method found. You can invoke the method like
                         if (isMethodOverrriden(methodToFind)) {
