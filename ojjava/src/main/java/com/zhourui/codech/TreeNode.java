@@ -20,20 +20,22 @@ public class TreeNode {
             TreeNode parent = toDo.getFirst();
             toDo.pop();
             idx++;
+            if (idx>=arr.size()) break;
             var left = arr.get(idx);
             if (left!=null) {
                 parent.left = new TreeNode(left);
-                toDo.push(parent.left);
+                toDo.offer(parent.left);//push 是插到linkedlist起始，faint!
             } else {
                 parent.left = null;
             }
 
             // right
             idx++;
+            if (idx>=arr.size()) break;
             var right = arr.get(idx);
             if (right!=null) {
                 parent.right = new TreeNode(right);
-                toDo.push(parent.right);
+                toDo.offer(parent.right);
             } else {
                 parent.right = null;
             }
