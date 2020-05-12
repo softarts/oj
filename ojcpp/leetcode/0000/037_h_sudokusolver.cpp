@@ -7,6 +7,7 @@
  * DFS
  */
 #include <codech/codech_def.h>
+#include <bitset>
 
 using namespace std;
 
