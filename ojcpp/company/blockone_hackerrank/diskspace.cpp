@@ -2,12 +2,7 @@
 // Created by rui.zhou on 5/20/2020.
 //
 
-#include <bits/stdc++.h>
 
-using namespace std;
-
-string ltrim(const string &);
-string rtrim(const string &);
 
 
 
@@ -31,6 +26,7 @@ string rtrim(const string &);
 // 每当deq满了，而且头部的元素正好是窗口之外的数字，pop出
 #include <codech/codech_def.h>
 
+using namespace std;
 namespace {
     int segment(int x, vector<int> space) {
         std::deque<int> deq;

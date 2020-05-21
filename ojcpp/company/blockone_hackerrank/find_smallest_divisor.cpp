@@ -11,7 +11,7 @@ using namespace std;
 
 namespace {
     //有问题，可能还可以分解
-    string finddupstr(string &s) {
+    string findDupStr(string &s) {
         int divisor = 2;
         while (s.length()/divisor>0){
             if(s.length()%divisor!=0){
@@ -24,7 +24,7 @@ namespace {
                     s0+=subs;
                 }
                 if (s0==s)
-                    return finddupstr(subs);
+                    return findDupStr(subs);
                 divisor++;
             }
         }
@@ -62,7 +62,7 @@ namespace {
             }
             pos += tl;
         }
-        auto subs0 = finddupstr(t);
+        auto subs0 = findDupStr(t);
         return subs0.length();
     }
 }
