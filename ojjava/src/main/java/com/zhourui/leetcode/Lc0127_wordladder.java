@@ -18,7 +18,7 @@ import java.util.*;
 // 遍历的时候如果修改了容器，iterator可能会失效, 避免使用iterator
 public class Lc0127_wordladder extends BaseSolution {
     class Solution {
-
+        // 这个方式比不上for loop的简洁
         public int ladderLength0(String beginWord, String endWord, List<String> wordList) {
             ArrayDeque<String> todo = new ArrayDeque<>();
             HashSet<String> words = new HashSet<>(wordList);

@@ -7,7 +7,7 @@ import com.zhourui.codech.BaseSolution;
 public class Lc0042_trapwater extends BaseSolution {
     class Solution {
         public int trap(int[] height) {
-
+            return 0;
         }
     }
 }

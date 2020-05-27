@@ -74,6 +74,7 @@ import java.util.LinkedList;
 //    }
 //}
 
+// 使用linkedHashmap是很好的办法，因为它带有顺序
 public class Lc0146_lrucache extends BaseSolution {
     class LRUCache {
         private LinkedHashMap<Integer,Integer> cache=new LinkedHashMap<>();

@@ -80,3 +80,7 @@ Hash相关
 * q98_验证二叉搜索树  //m ok有点技巧的
 * q450_删除二叉搜索树中的节点
 * q701_二叉搜索树中的插入操作  //m ok
+
+
+linkedlist
+toDo.offer(parent.left);//push 是插到linkedlist起始，faint!
