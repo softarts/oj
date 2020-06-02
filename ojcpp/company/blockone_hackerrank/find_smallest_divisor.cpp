@@ -11,6 +11,28 @@ using namespace std;
 
 namespace {
     //有问题，可能还可以分解
+    string kmp(string &s) {
+        int l = s.length();
+        vector<int> next(l,0); //= new int[l];
+        next[0] = -1;
+        int i, j = -1;
+        for (i = 1; i < l; i++) {
+            while (j >= 0 && s[i] != s[j + 1]) {
+                j = next[j];
+            }
+            if (s[i] == s[j + 1]) {
+                j++;
+            }
+            next[i] = j;
+        }
+        int lenSub = l - 1 - next[l - 1];
+
+        //(lenSub != l && l % lenSub ==0) {
+        return s.substr(0,lenSub);
+
+    }
+
+
     string findDupStr(string &s) {
         int divisor = 2;
         while (s.length()/divisor>0){
@@ -31,26 +53,7 @@ namespace {
         return s;
     }
 
-    string kmp(string &s) {
-        int l = s.length();
-        vector<int> next(l,0); //= new int[l];
-        next[0] = -1;
-        int i, j = -1;
-        for (i = 1; i < l; i++) {
-            while (j >= 0 && s[i] != s[j + 1]) {
-                j = next[j];
-            }
-            if (s[i] == s[j + 1]) {
-                j++;
-            }
-            next[i] = j;
-        }
-        int lenSub = l - 1 - next[l - 1];
 
-        //(lenSub != l && l % lenSub ==0) {
-         return s.substr(0,lenSub);
-
-    }
 
     int findSmallestDivisor(string s, string t) {
         if (s.length()<t.length()) return -1;

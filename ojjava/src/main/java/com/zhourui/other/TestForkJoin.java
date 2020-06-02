@@ -24,6 +24,7 @@ class ProductListGenerator {
     }
 }
 
+// RecursiveAction
 class Task extends RecursiveAction {
     private static final long serialVersionUUID = 1L;
     private List<Product> products;

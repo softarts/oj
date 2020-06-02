@@ -12,71 +12,6 @@
 using namespace std;
 using namespace CODECH;
 namespace {
-    vector<long> waysToChooseSum0(long lowLimit, long highLimit) {
-        unordered_map<int,int> m;
-        auto digitsum = [](long num) {
-            long sum = 0;
-            while (num>0) {
-                sum+=num%10;
-                num=num/10;
-            }
-            return sum;
-        };
-        int maxCount = INT_MIN;
-        for (int i=lowLimit;i<=highLimit;i++) {
-            auto sum=digitsum(i);
-            //cout << i<<","<< sum <<endl;
-            m[sum]+=1;
-            maxCount = max(maxCount,m[sum]);
-        }
-
-        unordered_set<int> ans;
-        for (auto &iter: m) {
-            //cout << iter.first << "," << iter.second<<endl;
-            if (iter.second == maxCount) {
-                ans.insert(iter.first);
-            }
-        }
-        return vector<long>{(long)ans.size(),maxCount};
-    }
-
-    vector<long> waysToChooseSum1(long lowLimit, long highLimit) {
-        unordered_map<int,int> m;
-        auto digitsum = [](long num) {
-            long sum = 0;
-            while (num>0) {
-                sum+=num%10;
-                num=num/10;
-            }
-            return sum;
-        };
-        int maxCount = INT_MIN;
-        auto prev = digitsum(lowLimit);
-        for (int i=lowLimit;i<=highLimit;i++) {
-            if (i%10 ==0) {
-                prev = prev-8;
-                m[prev]+=1;
-            } else {
-                prev = prev+1;
-                m[prev]+=1;
-            }
-            maxCount = max(maxCount,m[prev]);
-        }
-
-//        for (int i=lowLimit;i<=highLimit;i++) {
-//            m[digitsum(i)]+=1;
-//            maxCount = max(maxCount,m[digitsum(i)]);
-//        }
-
-        unordered_set<int> ans;
-        for (auto &iter: m) {
-            if (iter.second == maxCount) {
-                ans.insert(iter.first);
-            }
-        }
-        return vector<long>{(long)ans.size(),maxCount};
-    }
-
     // ---------------------------------------------------------------
 //    long long int solve(int pos,int sum,int f){
 //        if(pos==num.size())
@@ -117,10 +52,8 @@ namespace {
             return dp[pos][sum][limit];
         }
 
-
         long long init_count=0;
         int k = (limit)? dgt[pos] : 9;
-        //auto start = (pos<ldgt.size())?ldgt[pos]:0;
 
         for (int i = 0; i <= k ; i++)
         {
@@ -135,7 +68,6 @@ namespace {
     vector<long> waysToChooseSum(long lowLimit, long highLimit)
     {
         vector <int> hdgt,ldgt;
-
         auto getDigit = [](long x,vector<int>&dgt){
             while (x)
             {
@@ -148,7 +80,6 @@ namespace {
         getDigit(highLimit,hdgt);
 
         int k=hdgt.size()*9;
-
         priority_queue<long> pq;
         for (int i=0;i<k;i++) {
             memset(dp,-1,sizeof(dp));
@@ -156,8 +87,6 @@ namespace {
             memset(dp,-1,sizeof(dp));
             long ans2 = helper(hdgt.size()-1, hdgt, 1, 0, i);
             pq.push(ans2-ans1);
-            //maxL = max(maxL, ans2-ans1);
-            //cout << i<<","<< ans2-ans1 << endl;
         }
 
         auto maxL = pq.top();
@@ -255,7 +184,70 @@ namespace {
 //
 //    }
 
-
+//    vector<long> waysToChooseSum0(long lowLimit, long highLimit) {
+//        unordered_map<int,int> m;
+//        auto digitsum = [](long num) {
+//            long sum = 0;
+//            while (num>0) {
+//                sum+=num%10;
+//                num=num/10;
+//            }
+//            return sum;
+//        };
+//        int maxCount = INT_MIN;
+//        for (int i=lowLimit;i<=highLimit;i++) {
+//            auto sum=digitsum(i);
+//            //cout << i<<","<< sum <<endl;
+//            m[sum]+=1;
+//            maxCount = max(maxCount,m[sum]);
+//        }
+//
+//        unordered_set<int> ans;
+//        for (auto &iter: m) {
+//            //cout << iter.first << "," << iter.second<<endl;
+//            if (iter.second == maxCount) {
+//                ans.insert(iter.first);
+//            }
+//        }
+//        return vector<long>{(long)ans.size(),maxCount};
+//    }
+//
+//    vector<long> waysToChooseSum1(long lowLimit, long highLimit) {
+//        unordered_map<int,int> m;
+//        auto digitsum = [](long num) {
+//            long sum = 0;
+//            while (num>0) {
+//                sum+=num%10;
+//                num=num/10;
+//            }
+//            return sum;
+//        };
+//        int maxCount = INT_MIN;
+//        auto prev = digitsum(lowLimit);
+//        for (int i=lowLimit;i<=highLimit;i++) {
+//            if (i%10 ==0) {
+//                prev = prev-8;
+//                m[prev]+=1;
+//            } else {
+//                prev = prev+1;
+//                m[prev]+=1;
+//            }
+//            maxCount = max(maxCount,m[prev]);
+//        }
+//
+////        for (int i=lowLimit;i<=highLimit;i++) {
+////            m[digitsum(i)]+=1;
+////            maxCount = max(maxCount,m[digitsum(i)]);
+////        }
+//
+//        unordered_set<int> ans;
+//        for (auto &iter: m) {
+//            if (iter.second == maxCount) {
+//                ans.insert(iter.first);
+//            }
+//        }
+//        return vector<long>{(long)ans.size(),maxCount};
+//    }
 }
 
 DEFINE_CODE_TEST(blockone_digitsum)
