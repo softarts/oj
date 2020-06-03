@@ -84,6 +84,8 @@ public class Lc0127_wordladder extends BaseSolution {
         }
     }
 
+
+
     @Override
     public boolean test() {
 //        List<String> wordList = Arrays.asList("hot","dot","dog","lot","log","cog");

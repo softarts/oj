@@ -15,10 +15,10 @@ public class Lc0046_premutation extends BaseSolution {
     class Solution {
         public List<List<Integer>> permute(int[] nums) {
             List<List<Integer>> ans = new ArrayList<>();
-            ArrayList<Integer> arr = new ArrayList<>();
-            for (int i:nums) {
-                arr.add(i);
-            }
+            ArrayList<Integer> arr = new ArrayList(Arrays.asList(nums));
+//            for (int i:nums) {
+//                arr.add(i);
+//            }
             helper(0,ans,arr);
             return ans;
         }
