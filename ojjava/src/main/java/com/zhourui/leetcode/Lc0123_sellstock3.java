@@ -41,12 +41,45 @@ public class Lc0123_sellstock3 extends BaseSolution {
     }
     // 如果用DP呢？
     // 这个题和那个11xx很像，用n层循环
-    
+    // 其实不需要多层循环，直接逆向一次，O(N)
+    class Solution1 {
+        public int maxProfit(int[] prices) {
+            if (prices.length==0) return 0;
+            int lr[] = new int[prices.length];
+            int rl[] = new int[prices.length];
+
+            int maxP = 0;
+            int minP = prices[0];
+            for (int i=1;i<prices.length;i++) {
+                minP = min(prices[i],minP);
+                lr[i] = max(prices[i] - minP, lr[i-1]);
+            }
+
+            maxP = prices[prices.length-1];
+            for (int i=prices.length-2;i>=0;i--) {
+                rl[i] = max(maxP - prices[i], rl[i+1]);
+                maxP = max(prices[i],maxP);
+            }
+
+            maxP = lr[prices.length-1];
+            for (int i=0;i<prices.length-1;i++) {
+                maxP = max(maxP, lr[i]+rl[i+1]);
+            }
+            return maxP;
+        }
+    }
 
     @Override
     public boolean test() {
         var slu = new Solution();
+        boolean ret = true;
+
+        int[]arr1 = {3,3,5,0,0,3,1,4};
+        ret &= slu.maxProfit(arr1) == 6;
+
         int arr[]={1,2,3,4,5};
-        return slu.maxProfit(arr) == 4;
+        ret &= slu.maxProfit(arr) == 4;
+        return ret;
     }
 }
+

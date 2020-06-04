@@ -23,9 +23,8 @@ nums2 = [3, 4]
 The median is (2 + 3)/2 = 2.5
 寻找中位数的值.(合并数组)
 对2个数组，取k/2位置的值比较，将小的那个数组的前k/2的范围去掉，大的数组的后k/2范围去掉
- 最后退出条件为
-
- http://www.cnblogs.com/grandyang/p/4465932.html
+最后退出条件为
+http://www.cnblogs.com/grandyang/p/4465932.html
 
  */
 #include <codech/codech_def.h>
@@ -34,6 +33,7 @@ using namespace std;
 class Solution {
 public:
     // O(m+n), 类似merge sort的做法，合并两个数组
+    // 这个没优化
     double findMedianSortedArrays0(vector<int>& nums1, vector<int>& nums2) {
         int64_t max = std::numeric_limits<int64_t>::max();
         int m=nums1.size()+nums2.size();
@@ -64,6 +64,7 @@ public:
     //https://www.youtube.com/watch?v=LPFhl65R7ww
     // 对两个数组进行切分，保证左右两侧加起来的个数相等
     // 太精巧了，需要细细体会
+
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         int m = nums1.size();
         int n = nums2.size();
@@ -74,15 +75,19 @@ public:
         double result = 0;
 
         while (low<=high) {
-            int partx = (high+low)/2;
-            int party = (m+n+1)/2-partx;  // partx+party = (m+n+1)/2
+            int partx = (high+low)/2;     // x分成2半，有几个
+            // partx+party = (m+n+1)/2， 总数/2 - partx,表示要给x 补上的数量
+            // 为何是 m+n+1?
+            int party = (m+n+1)/2-partx;
 
+            // 分别得出两个区间
             int leftxmax = (partx>0?nums1[partx-1]:INT_MIN);
             int rightxmin = (partx<m?nums1[partx]:INT_MAX);
 
             int leftymax = (party>0?nums2[party-1]:INT_MIN);
             int rightymin = (party<n?nums2[party]:INT_MAX);
 
+            // 退出条件
             if (leftxmax <= rightymin && leftymax <= rightxmin) {
                 if ((n+m)%2==0) {
                     result = (double)(max(leftxmax,leftymax) + min(rightxmin,rightymin))/2.0;
@@ -90,7 +95,7 @@ public:
                     result = (double)max(leftxmax,leftymax);
                 }
                 break;
-            } else if (leftymax>rightxmin){
+            } else if (leftymax>rightxmin){  //
                 low = partx+1;
             } else {
                 high = partx-1;
@@ -98,14 +103,6 @@ public:
         }
         return result;
     }
-//    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-//        //nth_element(nums1.begin(),nums1.end());
-//
-//        return 0.0;
-//    }
-//    int findKth(vector<int>& nums1, int i, vector<int>& nums2, int j, int k) {
-//
-//    }
 };
 
 DEFINE_CODE_TEST(004_mediansortedarray)
