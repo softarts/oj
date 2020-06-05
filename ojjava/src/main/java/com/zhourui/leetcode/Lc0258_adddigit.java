@@ -3,6 +3,7 @@ package com.zhourui.leetcode;
 import com.zhourui.codech.BaseSolution;
 
 //O(1) 有点难
+//38 -> 11->2，如果不需要loop 得到最后结果?
 //0->0
 //1~9 -> 1-9 =9
 //10~18-> 1-9

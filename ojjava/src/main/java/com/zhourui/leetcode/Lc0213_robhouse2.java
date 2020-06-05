@@ -16,7 +16,7 @@ public class Lc0213_robhouse2 extends BaseSolution {
             int n = nums.length;
             if (n == 0) return 0;
             if (n == 1) return nums[0];
-            int dp[][] = new int[2][nums.length];
+            int[][] dp = new int[2][nums.length];
 
             dp[0][0] = nums[0];  // pick 0
             dp[0][1] = max(nums[0],nums[1]);

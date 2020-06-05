@@ -32,7 +32,7 @@ public class Lc1046_laststoneweight extends BaseSolution {
     public boolean test() {
         boolean ret = true;
         {
-            int arr[] = {2,7,4,1,8,1}; //STATIC INITIALIZATION
+            int[] arr = {2,7,4,1,8,1}; //STATIC INITIALIZATION
             ret &= new Solution().lastStoneWeight(arr)==1;
         }
         return ret;

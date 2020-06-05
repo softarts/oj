@@ -20,7 +20,7 @@ import static java.lang.Integer.max;
 public class Lc0300_longestincseq extends BaseSolution {
     class Solution {
         public int lengthOfLIS(int[] nums) {
-            int dp[] = new int[nums.length];
+            int[] dp = new int[nums.length];
             Arrays.fill(dp,1); // 必须设置为,因为在这个数组里，默认序列长度就是1
             int maxl=0;
             for (int i=0;i<nums.length; i++) {

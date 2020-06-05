@@ -11,7 +11,7 @@ import static java.lang.Integer.*;
 public class Lc0746_climbcost extends BaseSolution {
     class Solution {
         public int minCostClimbingStairs(int[] cost) {
-            int dp[] = new int[1001];
+            int[] dp = new int[1001];
             for (int i=2;i<=cost.length;i++) {
                 dp[i]=min(cost[i-2]+dp[i-2],cost[i-1]+dp[i-1]);
             }
@@ -21,7 +21,7 @@ public class Lc0746_climbcost extends BaseSolution {
 
     @Override
     public boolean test() {
-        int arr[] = {1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
+        int[] arr = {1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
         return (new Solution().minCostClimbingStairs(arr)==6);
     }
 

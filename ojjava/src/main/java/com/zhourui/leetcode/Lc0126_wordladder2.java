@@ -83,7 +83,7 @@ public class Lc0126_wordladder2 extends BaseSolution {
             LinkedHashSet<String> path = pr.links;
             String word = pr.word;
 
-            char buf[] = word.toCharArray();
+            char[] buf = word.toCharArray();
             for (int i=0;i<buf.length;i++) {
                 char old = buf[i];
                 for (char j='a';j<='z';j++) {
@@ -127,7 +127,7 @@ public class Lc0126_wordladder2 extends BaseSolution {
                 }
 
                 String lastW = p.getLast();
-                char buf[] = lastW.toCharArray();
+                char[] buf = lastW.toCharArray();
                 for (int i=0;i<buf.length;i++) {
                     char old = buf[i];
                     for (char j='a';j<='z';j++) {

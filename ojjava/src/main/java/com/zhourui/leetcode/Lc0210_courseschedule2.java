@@ -26,7 +26,7 @@ public class Lc0210_courseschedule2 {
             }
 
             //ArrayList<Integer> topo = new ArrayList();
-            int topo[] = new int[numCourses];
+            int[] topo = new int[numCourses];
             int idx=0;
             while (!ready.isEmpty()) {
                 var course = ready.remove();
@@ -38,7 +38,7 @@ public class Lc0210_courseschedule2 {
                     }
                 }
             }
-            int empty[]={};
+            int[] empty ={};
             return idx==numCourses?topo:empty;
 
         }

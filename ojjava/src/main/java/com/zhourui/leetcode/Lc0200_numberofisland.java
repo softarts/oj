@@ -11,7 +11,7 @@ public class Lc0200_numberofisland extends BaseSolution {
             if (grid.length == 0) return 0;
             int m=grid.length,n = grid[0].length;
 
-            boolean visited[][] = new boolean[m][n];
+            boolean[][] visited = new boolean[m][n];
             int ans=0;
             for (int r=0;r<m;r++) {
                 for (int c=0;c<n;c++) {
@@ -23,7 +23,7 @@ public class Lc0200_numberofisland extends BaseSolution {
             return ans;
         }
 
-        int helper(int m,int n,char[][]grid, boolean visited[][], int r, int c) {
+        int helper(int m, int n, char[][]grid, boolean[][] visited, int r, int c) {
             if (r<0 || r>m || c<0 || c>n || grid[r][c]=='0' || visited[r][c]) {
                 return 0;
             }

@@ -45,8 +45,8 @@ public class Lc0123_sellstock3 extends BaseSolution {
     class Solution1 {
         public int maxProfit(int[] prices) {
             if (prices.length==0) return 0;
-            int lr[] = new int[prices.length];
-            int rl[] = new int[prices.length];
+            int[] lr = new int[prices.length];
+            int[] rl = new int[prices.length];
 
             int maxP = 0;
             int minP = prices[0];
@@ -77,7 +77,7 @@ public class Lc0123_sellstock3 extends BaseSolution {
         int[]arr1 = {3,3,5,0,0,3,1,4};
         ret &= slu.maxProfit(arr1) == 6;
 
-        int arr[]={1,2,3,4,5};
+        int[] arr ={1,2,3,4,5};
         ret &= slu.maxProfit(arr) == 4;
         return ret;
     }

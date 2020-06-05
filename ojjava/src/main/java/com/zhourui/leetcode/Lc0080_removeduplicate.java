@@ -47,8 +47,8 @@ public class Lc0080_removeduplicate extends BaseSolution {
     @Override
     public boolean test() {
         Solution slu = new Solution();
-        int arr[] = new int[]{1,1,1,2,2,3};
-        int arr2[] = new int[]{0,0,1,1,1,1,2,3,3};
+        int[] arr = new int[]{1,1,1,2,2,3};
+        int[] arr2 = new int[]{0,0,1,1,1,1,2,3,3};
         boolean ret = true;
         ret &= slu.removeDuplicates(arr)==5;
         ret &= slu.removeDuplicates(arr2)==7;

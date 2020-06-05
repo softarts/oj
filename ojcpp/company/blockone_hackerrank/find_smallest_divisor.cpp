@@ -10,7 +10,7 @@
 using namespace std;
 
 namespace {
-    //有问题，可能还可以分解
+
     string kmp(string &s) {
         int l = s.length();
         vector<int> next(l,0); //= new int[l];
@@ -32,7 +32,8 @@ namespace {
 
     }
 
-
+    //有问题，可能还可以分解,所以需要递归调用
+    // 从除数2开始试验，是否可以分解
     string findDupStr(string &s) {
         int divisor = 2;
         while (s.length()/divisor>0){

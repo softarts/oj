@@ -4,10 +4,11 @@ import com.zhourui.codech.BaseSolution;
 import com.zhourui.codech.TreeNode;
 
 // 太傻B了，p和q不按序
+// 求BST得最低公共节点
 public class Lc0235_lowestcommonancestor extends BaseSolution {
     class Solution {
         public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-            if (p.val>q.val) {
+            if (p.val>q.val) {  // 可能给得p,q 顺序不定
                 TreeNode tmp = q;
                 q = p;p=tmp;
             }

@@ -13,7 +13,7 @@ import static java.lang.Math.min;
 public class Lc0264_ugly2 extends BaseSolution {
     class Solution {
         public int nthUglyNumber(int n) {
-            int arr[]=new int[n];
+            int[] arr =new int[n];
             arr[0]=1;
             int i2=0,i3=0,i5=0;
             int next=1;

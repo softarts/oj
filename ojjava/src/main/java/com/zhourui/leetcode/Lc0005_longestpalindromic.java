@@ -9,7 +9,7 @@ public class Lc0005_longestpalindromic extends BaseSolution {
     class Solution {
         public String longestPalindrome(String s) {
             if (s.isEmpty()) return "";
-            boolean dp[][]= new boolean[1000][1000];
+            boolean[][] dp = new boolean[1000][1000];
             //Arrays.setAll(dp,p->false);  //必须为false
             for (int i=0;i<1000;i++) {
                 for (int j=0;j<1000;j++) {

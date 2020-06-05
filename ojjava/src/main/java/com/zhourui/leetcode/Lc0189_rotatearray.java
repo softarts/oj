@@ -37,7 +37,7 @@ public class Lc0189_rotatearray extends BaseSolution {
     @Override
     public boolean test() {
         var slu = new Solution();
-        int arr[]={-1};
+        int[] arr ={-1};
         slu.rotate(arr,2);
         return arr[0]==-1;
     }
