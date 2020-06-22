@@ -36,7 +36,7 @@ Output: [1,2,3,4,8,12,11,10,9,5,6,7]
 // 需要处理好单行或者单列的情况
 // 还是c++的做法比较好,每处理完一行就修改边界
 public class Lc0054_spiralmatrix extends BaseSolution {
-    class Solution {
+    class Solution0 {
         public List<Integer> spiralOrder(int[][] matrix) {
             if (matrix.length ==0) {
                 return Collections.emptyList();
@@ -83,6 +83,51 @@ public class Lc0054_spiralmatrix extends BaseSolution {
         }
     }
 
+    // 不需要递归，使用循环
+    class Solution {
+        public List<Integer> spiralOrder(int[][] matrix) {
+            if (matrix.length ==0) {
+                return Collections.emptyList();
+            }
+            List<Integer> ret = new ArrayList();
+            int left = 0,right = matrix[0].length-1,top=0,bottom = matrix.length - 1;
+            while (true) {
+                //top
+                for (int i=left;i<=right;i++) {
+                    ret.add(matrix[top][i]);
+                }
+                if (++top>bottom) {
+                    break;
+                }
+                // right
+                for (int i=top;i<=bottom;i++) {
+                    ret.add(matrix[i][right]);
+                }
+                if (--right < left) {
+                    break;
+                }
+                // bottom
+                for (int i=right;i>=left;i--) {
+                    ret.add(matrix[bottom][i]);
+                }
+                if (--bottom < top) {
+                    break;
+                }
+
+                //left
+                for (int i=bottom;i>=top;i--) {
+                    ret.add(matrix[i][left]);
+                }
+                if (++left > right) {
+                    break;
+                }
+            }
+            return ret;
+        }
+    }
+
+
+
     @Override
     public boolean test() {
         Solution slu = new Solution();
@@ -95,7 +140,7 @@ public class Lc0054_spiralmatrix extends BaseSolution {
         ret &= lst.equals(exp);
 
         int [][]matrix1 = {{7},{9},{6}};
-        List<Integer> lst1 = slu.spiralOrder(matrix);
+        List<Integer> lst1 = slu.spiralOrder(matrix1);
         int expArr1[]={7,9,6};
         List<Integer> exp1 = Arrays.stream(expArr1).boxed().collect(Collectors.toList());
         ret &= lst1.equals(exp1);

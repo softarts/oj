@@ -29,6 +29,7 @@ namespace {
     };
 
     // still slow hashtabel
+    // 使用hash,需要O(N)空间和O(N) 复杂度
     class Solution1 {
     public:
         int majorityElement(vector<int> &nums) {
@@ -46,6 +47,10 @@ namespace {
     public:
         //Boyer-Moore Majority Vote Algorithm
         //http://www.cs.utexas.edu/~moore/best-ideas/mjrty/
+        //count 初始为1
+        //如果与前面的数相同,count++,否则count--,count为0时重新选择新的数
+        //当前跟踪的数prev,如果其count>0,那就继续处理它
+        //这个前提是必然有一个数多于一半，否则算法不成立
         int majorityElement(vector<int>& nums) {
             int count = 1;
             int prev = nums[0];

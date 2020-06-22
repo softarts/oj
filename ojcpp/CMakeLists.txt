@@ -64,7 +64,7 @@ set(SOURCE_FILES
         ${LINT}
         ${DESIGN}
         ${CODILITY}
-        leetcode/538_e_convertbst_to_greatertree.cpp leetcode/617_mergetree.cpp leetcode/543_diameterbinarytree.cpp)
+        )
 
 add_executable(ojcpp ${SOURCE_FILES})
 
