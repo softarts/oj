@@ -251,7 +251,7 @@ isolate the suspected module, and rewrite some of the code.
 1.I rarely made mistake..carefully deal with my work, especially online service.
 just I need little time in a new environment
 
-2.when I joined current company yitu, my first project is evaluate a product performance and see any chance to build a quality control
+2.when I joined current company , my first project is evaluate a product performance and see any chance to build a quality control
 platform to do it. I could overlook the second part and spent too much time on first part and miss inside(because it is a tremendous project)
 because my department is infrastrcture dept, mission is to build the common platform(computing/training/storage/testing)
 but because I keep communicated with my boss frequently, understand what he is thinking and I quickly find the way.
@@ -284,7 +284,7 @@ solution I also whare with team member so that we can improve our solution.
 
 
 #decision
-yitu is a startup. and offline product. many team still use old school develop method. e.g. slow release procedure.
+ is a startup. and offline product. many team still use old school develop method. e.g. slow release procedure.
 manually do test. no CD last year.
 I push my cooperated team to change to devops mode, and also prepare for cloud based product.
 many people think it is big change but anyway they see the benefit after I give them training, presentation.
