@@ -22,7 +22,7 @@ The length of the array won't exceed 10,0000.
 You may assume the sum of all the numbers is in the range of a signed 32-bit integer.
 
 重复数字？
-找出连续数组的和是K的倍数，yitu 面试题
+找出连续数组的和是K的倍数，ty 面试题
  */
 
 
