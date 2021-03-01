@@ -53,32 +53,63 @@ using namespace CODECH;
 
 class Solution {
 public:
-    bool isSubtree(TreeNode* s, TreeNode* t) {
-        if (s==nullptr && t)
-            return false;
-        else if (!s && !t)
-            return true;
+    //这个方案不行，本来是比较是不是同一棵树，却把它弱化为子树就可以了，错！
+    // bool isSubtree(TreeNode* s, TreeNode* t) {
+    //     //exit condition
+    //     if (!s && !t) return true;
+    //     if (s==nullptr || t==nullptr) return false;
+    //     return isSubtree(s->left, t) || isSubtree(s->right, t) ||
+    //         (s->val==t->val && isSubtree(s->left, t->left) && isSubtree(s->right,t->right));
+        
+    // }
 
-        bool ret = helper(s,t);
-        if (!ret)
-            ret = isSubtree(s->left,t);
-        if (!ret)
-            ret = isSubtree(s->right,t);
-        return ret;
+    // can't mix helper & the other two
+    bool isSubtree(TreeNode *t1,TreeNode*t2) {
+        return helper(t1,t2) || (t1 &&
+                (isSubtree(t1->left,t2) ||
+                        isSubtree(t1->right,t2))) ||
+                (t1==nullptr && t2==nullptr);
     }
 
-    bool helper(TreeNode* s, TreeNode* t) {
-        if (s && t) {
-            return
-            ((s->val == t->val) &&
-            (helper(s->left,t->left)) &&
-            (helper(s->right,t->right)));
-        } else if (!s && !t) {
-            return true;
+
+    bool helper(TreeNode*t1,TreeNode*t2) {
+        if (t1&&t2) {
+            return (t1->val==t2->val) &&
+                    helper(t1->left,t2->left) &&
+                    helper(t1->right,t2->right);
         } else {
-            return false;
+            return t1==nullptr && t2==nullptr;
         }
     }
+
+
+    // good but I have a more elegant solution
+    // bool isSubtree(TreeNode* s, TreeNode* t) {
+    //     if (s==nullptr && t)
+    //         return false;
+    //     else if (!s && !t)
+    //         return true;
+
+    //     bool ret = helper(s,t);
+    //     if (!ret)
+    //         ret = isSubtree(s->left,t);
+    //     if (!ret)
+    //         ret = isSubtree(s->right,t);
+    //     return ret;
+    // }
+
+    // bool helper(TreeNode* s, TreeNode* t) {
+    //     if (s && t) {
+    //         return
+    //         ((s->val == t->val) &&
+    //         (helper(s->left,t->left)) &&
+    //         (helper(s->right,t->right)));
+    //     } else if (!s && !t) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 };
 
 DEFINE_CODE_TEST(572_subtree)
