@@ -53,7 +53,7 @@ using namespace CODECH;
 
 class Solution {
 public:
-    //这个方案不行，本来是比较是不是同一棵树，却把它弱化为子树就可以了，错！
+    //这个方案不行，本来是比较是不是同一棵树，却把它弱化为子树就可以了，错！(即可能有一方还存在子叶子的情况，只截取中间是不行的)
     // bool isSubtree(TreeNode* s, TreeNode* t) {
     //     //exit condition
     //     if (!s && !t) return true;
@@ -64,6 +64,7 @@ public:
     // }
 
     // can't mix helper & the other two
+    // 也没改进多少，依然守
     bool isSubtree(TreeNode *t1,TreeNode*t2) {
         return helper(t1,t2) || (t1 &&
                 (isSubtree(t1->left,t2) ||
