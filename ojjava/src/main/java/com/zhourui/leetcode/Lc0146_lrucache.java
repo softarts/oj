@@ -74,6 +74,90 @@ import java.util.LinkedList;
 //    }
 //}
 
+// lany modification  of list after listiterator create will fail the operation
+// because listiterarot use internal lastreturn to remember the order
+
+class Lc0146_lrucache0 extends BaseSolution {
+    class LRUCache {
+        class Node {
+            public int value,key;
+            public Node prev=null,next=null;
+        }
+        private int cap = 0;
+        private HashMap<Integer, Node> cache = new HashMap();
+        Node head=null,tail=null;
+
+        public LRUCache(int capacity) {
+            cap = capacity;
+        }
+        private void addNode(Node node) {
+            if (head==null) {
+                head = node;
+                tail = node;
+            } else {
+                tail.next = node;
+                node.prev = tail;
+                tail = node;
+            }
+        }
+
+        private void removeNode(Node node) {
+            Node prev = node.prev;
+            if (prev!=null) {//not head
+                prev.next = node.next;
+            } else {
+                head = node.next;
+            }
+
+            Node next = node.next;
+            if (next!=null) {// not tail
+                next.prev = prev;
+            } else {
+                tail = prev;
+            }
+
+            node.prev = null;
+            node.next = null;
+        }
+
+
+
+        public int get(int key) {
+            if (cache.containsKey(key)) {
+                Node node = cache.get(key);
+                removeNode(node);
+                addNode(node);
+                return node.value;
+            } else {
+                return -1;
+            }
+        }
+
+        public void put(int key, int value) {
+            if (cache.containsKey(key)) {
+                Node node = cache.get(key);
+                removeNode(node);
+                addNode(node);
+                node.value = value;
+            } else {
+                if (cache.size()==cap) {
+                    if (head != null) {
+                        int hk = head.key;
+                        removeNode(head);
+                        cache.remove(hk);
+                    }
+                }
+                Node newNode = new Node();
+                newNode.value = value;
+                newNode.key = key;
+                addNode(newNode);
+                cache.put(key,newNode);
+            }
+        }
+
+    }
+
+}
 // 使用linkedHashmap是很好的办法，因为它带有顺序
 public class Lc0146_lrucache extends BaseSolution {
     class LRUCache {

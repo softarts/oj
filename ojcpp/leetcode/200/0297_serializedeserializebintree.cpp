@@ -3,6 +3,7 @@
 */
 
 #include <codech/codech_def.h>
+using namespace CODECH;
 using namespace std;
 
 /**

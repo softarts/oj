@@ -37,6 +37,7 @@ namespace lc146 {
         int sz_;
         unordered_map<int,int> cache_;
         unordered_map<int,list<data_t>::iterator> keyToList_;
+        //头部是最新update的数据
     public:
         LRUCache(int capacity) {
             sz_=capacity;

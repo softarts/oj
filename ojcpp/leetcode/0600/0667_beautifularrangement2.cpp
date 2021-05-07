@@ -29,7 +29,7 @@ namespace {
             while (l<=r) {
                 if (k>1) {
                     // 注意=1起
-                    k%2==1?res.push_back(l++):res.push(r--);
+                    k%2==1?res.push_back(l++):res.push_back(r--);
                     k--;
                 } else {
                     res.push_back(l++);

@@ -23,31 +23,36 @@ The two tuples are:
 1. (0, 0, 0, 1) -> A[0] + B[0] + C[0] + D[1] = 1 + (-2) + (-1) + 2 = 0
 2. (1, 1, 0, 0) -> A[1] + B[1] + C[0] + D[0] = 2 + (-1) + (-1) + 0 = 0
  */
+
+//这题我一点印象都没有
+//
 #include <codech/codech_def.h>
 using namespace std;
-
-class Solution {
-public:
-    int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D) {
-        unordered_map<int,int> map;
-        
-        int count = 0;
-        for (auto a: A) {
-            for (auto b: B) {
-                map[a+b]+=1;
-            }
-        }
-        for (auto c:C) {
-            for (auto d:D) {
-                int cd = -(c+d);
-                if (map.find(cd)!=map.end()) {
-                    count+=map[cd];
+namespace {
+    class Solution {
+    public:
+        int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D) {
+            unordered_map<int,int> map;
+            
+            int count = 0;
+            for (auto a: A) {
+                for (auto b: B) {
+                    map[a+b]+=1;
                 }
             }
+            for (auto c:C) {
+                for (auto d:D) {
+                    int cd = -(c+d);
+                    if (map.find(cd)!=map.end()) {
+                        count+=map[cd];
+                    }
+                }
+            }
+            return count;
         }
-        return count;
-    }
-};
+    };
+
+}
 
 DEFINE_CODE_TEST(454_4sum2)
 {

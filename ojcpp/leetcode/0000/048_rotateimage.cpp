@@ -116,8 +116,35 @@ public:
             }
             start++;end--;
         }
-
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    // 考虑多个正方形叠加，因此需要start和end来判断起始位置
+    // end 不要等于n，既要留出最后一个元素的空间
+    void rotate0(vector<vector<int>>& matrix) {
+        int n=matrix.size()-1;
+        int start=0,end=n;
+        while (start<end) {
+            for (int i=start;i<end;i++) {//注意起始条件
+                swap(matrix[start][i],matrix[i][end]);
+                swap(matrix[start][i],matrix[end][n-i]);  // 如果y用end-i的话会变得双重计算，因为i已包含了start的结果 
+                swap(matrix[start][i],matrix[n-i][start]);
+            }
+            start++;end--;
+        }
+        
+    }
+    
 };
 
 DEFINE_CODE_TEST(048_rotateimage)
