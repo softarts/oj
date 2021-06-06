@@ -37,6 +37,14 @@ S[0] = "(", S[S.length - 1] = ")", and the other elements in S are digits.
  主要看string->double之后->string 能否等于原有的字符？
  主要是对条件的判断
 
+该题居然在2021-05-13不再AC
+这题看起来是关于字符串操作的,给出一串字符，把他们还原成2个坐标，只能有一个小数点,001->0, 0.1
+先将字符串拆成2组, 00011->000 11
+然后判断该字符串是否有效数字（通过加小数点）
+条件，反例
+011, 1.0, 0.0, 0.00, 00.01
+
+
  */
 
 #include <codech/codech_def.h>
@@ -45,7 +53,39 @@ using namespace std;
 namespace {
     class Solution {
     public:
+        // good!!!
         vector<string> ambiguousCoordinates(string S) {
+            auto getNumber = [](string s0) {
+                vector<string> ret;
+                // 000-> 0.00, 00.0, 000
+                for (int i=1;i<=s0.length();i++) {
+                    string integer = s0.substr(0,i);
+                    string fractor =  s0.substr(i);
+                    //整数部分不以0开头
+                    if ((integer.length()!=1 && integer[0]=='0') || (!fractor.empty() && fractor[fractor.length()-1]=='0')) {
+                        continue;
+                    }
+                    ret.push_back(integer+ (i==s0.length()?"":"."+fractor));
+                }
+                return ret;
+            };
+            vector<string> ans;
+            string s1=S.substr(1,S.length()-2);
+            for (int i=1;i<s1.length();i++) {
+                string left = s1.substr(0,i);
+                string right = s1.substr(i);
+                cout<<left<<","<<right<<std::endl;
+                for (auto &il:getNumber(left)) {
+                    for (auto &ir:getNumber(right)) {
+                        ans.push_back("("+il+", "+ir+")");
+                    }
+                }
+            }
+            return ans;
+        }
+
+        //居然不再AC
+        vector<string> ambiguousCoordinates0(string S) {
             vector<string> ret;
             for (int i=1;i<S.size()-1;i++) {
                 for (auto &left: f(S.substr(1,i))) {

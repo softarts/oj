@@ -7,14 +7,14 @@ using namespace std;
 using namespace CODECH;
 //最小的k个数
 //sort之后,O(NLogN)
-// nthelement
-//优先队列
+// nthelement - O(N)
+//优先队列 O(LogK*N)
 
 namespace {
     class Solution {
     public:
 
-        //思路,将所有小于pivot的数放到左边,这是其中一种分区方法,Log(N)
+        //思路,将所有小于pivot的数放到左边,这是其中一种分区方法,Log(N)->O(N)?
         int partition(vector<int>&arr,int low,int high) {
             int pivot = arr[low];
             while (low<high) {
@@ -27,6 +27,7 @@ namespace {
             return low;
         }
 
+        // 有问题代码
         vector<int> topksmallest(vector<int>&arr, int k) {
             int low=0,high=arr.size()-1;
             int cut = partition(arr,low,high);

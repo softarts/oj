@@ -16,7 +16,9 @@ Special thanks to @mithmatt for adding this problem and creating all test cases.
  2,3,5,7,11,13...
 
  https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
-
+计算小于N的素数有多少个
+countPrimes0, 逐个% (开根号),
+优化， 使用素数筛法,使用一个数组记下所有素数，0，1不是素数
 */
 
 #include <codech/codech_def.h>
@@ -26,7 +28,7 @@ using namespace std;
 
 class Solution {
 public:
-    // slow
+    // slow 800ms
     int countPrimes0(int n) {
         auto isPrime = [](int p) -> bool {
             for (int i = 2; i < int(sqrt(p)) + 1; i++) {
@@ -97,7 +99,8 @@ public:
         }
         return count;
     }
-
+    // ===========================================================================
+    // good
     int countPrimes(int n) {
         if (n <= 2) return 0;
         vector<int> flag(n,1);    //true
@@ -121,6 +124,24 @@ public:
         }
         int count = count_if(flag.begin(), flag.end(),[](int r){return r==1;});
         return count;
+    }
+
+    int countPrimes3(int n) {
+        if (n <= 2) return 0;
+        vector<int> primes(n,1);
+        primes[0]=0;
+        primes[1]=0;
+
+        for (int i=0;i<sqrt(n);i++) {
+            if (primes[i]) { // it is prime
+                for (int j=i+i;j<n;j+=i) {
+                    primes[j] = 0;   // 将所有的倍数都设为非质数
+                }
+            }
+        }
+        int count = count_if(primes.begin(), primes.end(),[](int r){return r==1;});
+        return count;
+
     }
 };
 

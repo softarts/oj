@@ -46,41 +46,7 @@ lfu.get(4);      // return 4
 (list)
 [1]---list<1,2,3>
 [3]---list<4,5,6>
-(hashmap)
-可以使用哈神马胖，因为count只会+-1，
-
-class Slot;
-        class Slot {
-            public:
-            int count = 0; 
-            list<DataNode> nodeList;
-        };
-
-void incCount(list<DataNode>::iterator nodeIter) {
-        DataNode &dnode = *nodeIter;
-
-        //nodeIter->count++;
-
-        Slot &curSlot = dnode.slotIter;
-        curSlot.nodeList.erase(nodeIter);
-        
-        // nodeIter is invalid
-        list<Slot>::iterator nextSlotIter = dnode.slotIter+1;
-        
-        
-
-        if (nextSlotIter!=slotList.end() && nextSlotIter->count == nodeIter->count) {
-            // add to next Slot
-            Slot &nextSlot = *nextSlotIter;
-            nextSlot.nodeList.push_back(*nodeIter);
-            dnode.nodeIter = nextSlot.nodeList.back();
-            dnode.slotIter = nextSlotIter; 
-        } else {
-            // add new one
-        }
-    }
-
-
+原本打算使用linkedlist的，但实际上hashmap也可以，因为只需要记住mincount
 */
 
 
