@@ -1,4 +1,4 @@
-// Given a string s of '(' , ')' and lowercase English characters. 
+// Given a string s of '(' , ')' and lowercase English characters.
 
 // Your task is to remove the minimum number of parentheses ( '(' or ')', in any positions ) so that the resulting parentheses string is valid and return any valid string.
 
@@ -7,7 +7,6 @@
 // It is the empty string, contains only lowercase characters, or
 // It can be written as AB (A concatenated with B), where A and B are valid strings, or
 // It can be written as (A), where A is a valid string.
- 
 
 // Example 1:
 
@@ -23,42 +22,42 @@
 // Input: s = "))(("
 // Output: ""
 // Explanation: An empty string is also valid.
-// 思路 只要使()成对即可	
-package leetcode 
+// 思路 只要使()成对即可
+package leetcode
 
 import (
-	"fmt"
-	"reflect"
+	// "fmt"
+	// "reflect"
+	"strings"
 )
 
 func minRemoveToMakeValid(s string) string {
-	//fmt.Println(reflect.TypeOf(s[0]))	
+	//fmt.Println(reflect.TypeOf(s[0]))	==>uint8
 	// 一个stack
 	left := []int{}
-	
-	// 使用一个数组，绝,这样可以方便的remove和join
-	out:= make([]string, len(s))
 
-	for i, r := range(s) {
+	// 使用一个数组，绝,这样可以方便的remove和join
+	out := make([]string, len(s))
+
+	for i, r := range s {
 		c := string(r)
 		switch c {
-            case "C":
-			    left= append(left,i)
-			    out[i] = c
-            case ")":
-                if len(left)>0 {
-                    left = left[:len(left)-1] // pair, pop
-                    out[i] = c
-                } else {
-                    out[i]="" // remove
-                }
-		    default:
-			    out[i]=c
-		}		
+		case "(":
+			left = append(left, i)
+			out[i] = c
+		case ")":
+			if len(left) > 0 {
+				left = left[:len(left)-1] // pair, pop
+				out[i] = c
+			} else {
+				out[i] = "" // remove
+			}
+		default:
+			out[i] = c
+		}
 	}
-	for _,idx := range left {
-		out[idx]="" // remove
+	for _, idx := range left {
+		out[idx] = "" // remove
 	}
-	return strings.Join(out,"")
+	return strings.Join(out, "")
 }
-

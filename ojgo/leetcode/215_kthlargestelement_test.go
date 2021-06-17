@@ -58,7 +58,7 @@ func findKthLargest0(nums []int, k int) int {
 // 	return loc + 1
 // }
 
-//更好的方法是使用nth_element
+//更好的方法是使用nth_element O(N)
 //partition 将所有大于pivot的数都放在右边，小于的都在左边
 func partition(data []int, low, high int) int {
 	pivot := data[low]
@@ -78,24 +78,24 @@ func partition(data []int, low, high int) int {
 	return low        // 返回low 位置
 }
 
-func partition2(nums []int, start, end int) int {
-	pivot := nums[start]
-	left, right := start+1, end
+// func partition2(nums []int, start, end int) int {
+// 	pivot := nums[start]
+// 	left, right := start+1, end
 
-	for left <= right {
-		for left <= right && nums[left] <= pivot {
-			left++
-		}
-		for left <= right && nums[right] > pivot {
-			right--
-		}
-		if left <= right {
-			nums[left], nums[right] = nums[right], nums[left]
-		}
-	}
-	nums[right], nums[start] = nums[start], nums[right]
-	return right
-}
+// 	for left <= right {
+// 		for left <= right && nums[left] <= pivot {
+// 			left++
+// 		}
+// 		for left <= right && nums[right] > pivot {
+// 			right--
+// 		}
+// 		if left <= right {
+// 			nums[left], nums[right] = nums[right], nums[left]
+// 		}
+// 	}
+// 	nums[right], nums[start] = nums[start], nums[right]
+// 	return right
+// }
 
 func findKthLargest(nums []int, k int) int {
 	low := 0

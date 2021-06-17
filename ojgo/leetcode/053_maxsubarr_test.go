@@ -24,7 +24,7 @@ import (
 	"testing"
 )
 
-func maxSubArray(nums []int) int {
+func maxSubArray0(nums []int) int {
 	if len(nums)==0  {
 		return 0
 	}
@@ -32,6 +32,26 @@ func maxSubArray(nums []int) int {
 	curSum := nums[0]
 	for i:=1;i<len(nums);i++ {
 		if curSum+nums[i] < nums[i] || curSum+nums[i]<0 {
+			curSum = nums[i]
+		} else {
+			curSum += nums[i]
+		}
+		if curSum > maxSum {
+			maxSum = curSum
+		}
+	}
+	return maxSum
+}
+
+
+func maxSubArray(nums []int) int {
+	if len(nums)==0  {
+		return 0
+	}
+    maxSum := nums[0]
+	curSum := nums[0]
+	for i:=1;i<len(nums);i++ {
+		if curSum+nums[i] < nums[i] {
 			curSum = nums[i]
 		} else {
 			curSum += nums[i]

@@ -1,5 +1,9 @@
 package leetcode
 
+
+/*
+这个做法更好，不要container/list那些依赖
+*/
 import (
 	"fmt"
 	"reflect"
@@ -31,7 +35,6 @@ func (ll *DoublyLinkedList) Remove(node *Node) {
 	} else {
 		node.next.prev = node.prev
 	}
-
 }
 
 func (ll *DoublyLinkedList) Front() *Node {
