@@ -20,25 +20,25 @@ Input: words = ["xbc","pcxbcf","xb","cxbc","pcxbc"]
 Output: 5
 */
 
-#include <codech/codech_def.h>
-using namespace std;
-namespace {
-    class Solution {
-    public:
-        int longestStrChain(vector<string>& words) {
-            unordered_map<int,list<string>> lengthMap;
-            int maxl = 0;
-            for (auto &it:words) {
-                int l=it.length();
-                lengthMap[l].push_back(it);
-                maxl = max(maxl, l);
-            }
-            for () {
+// #include <codech/codech_def.h>
+// using namespace std;
+// namespace {
+//     class Solution {
+//     public:
+//         int longestStrChain(vector<string>& words) {
+//             unordered_map<int,list<string>> lengthMap;
+//             int maxl = 0;
+//             for (auto &it:words) {
+//                 int l=it.length();
+//                 lengthMap[l].push_back(it);
+//                 maxl = max(maxl, l);
+//             }
+//             for () {
                 
-            }
+//             }
 
 
-        }
-    };
+//         }
+//     };
 
-}
+// }
